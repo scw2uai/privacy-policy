@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Privacy Policy — Scarlett Health</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 720px; margin: 56px auto; padding: 0 22px; line-height: 1.65; }
+    h1, h2 { line-height: 1.25; }
+    li { margin-bottom: 0.55rem; }
+    nav a { margin-right: 1rem; }
+    footer { margin-top: 3rem; font-size: 0.9rem; opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Privacy Policy — Scarlett Health</h1>
+    <p><strong>Effective and last updated:</strong> August 12, 2026</p>
+
+    <h2>Who and what this policy covers</h2>
+    <p>Scarlett Health is a private, noncommercial, single-user personal-wellness integration operated by Scott Wilks for his own use. This policy describes how that integration handles information obtained through the Oura Cloud API. Questions and privacy requests may be sent to <a href="mailto:scottwilks76@gmail.com">scottwilks76@gmail.com</a>.</p>
+
+    <h2>Information received and retained</h2>
+    <p>The integration requests only the Oura <code>daily</code> OAuth scope and calls only the daily Readiness, daily Sleep, and daily Activity endpoints. Endpoint responses are held temporarily in memory for validation. The integration does not call endpoints for email, personal profile, heart-rate series, workouts, sessions, tags, SpO2, ring configuration, stress, heart health, location, or detailed sleep periods.</p>
+    <p>After validation, the integration retains only:</p>
+    <ul>
+      <li>the Oura document identifier, calendar day, score, and selected documented contributor scores;</li>
+      <li>limited Readiness temperature-deviation fields;</li>
+      <li>limited Activity fields: active calories, target calories, total calories, steps, sedentary time, and non-wear time;</li>
+      <li>connection and synchronization metadata needed to prevent duplicate imports, record freshness, and diagnose bounded errors; and</li>
+      <li>deterministic recovery categories and workout-volume decisions derived from those minimized records.</li>
+    </ul>
+    <p>Full raw API payloads and fields outside this allowlist are discarded after validation. Imported calorie values are stored as Activity facts but are never used to increase or “eat back” a nutrition target.</p>
+
+    <h2>How the information is used</h2>
+    <p>The information is used only to synchronize and present the operator's personal daily summaries, record freshness, and apply a conservative deterministic rule: same-day Readiness—or Sleep only when Readiness is unavailable—may reduce a suggested workout volume. It cannot increase workout volume, override pain or no-time safety rules, override an explicit user choice, or alter nutrition targets.</p>
+
+    <h2>Artificial intelligence</h2>
+    <p>Although the broader Second Brain system uses artificial intelligence for unrelated functions, Oura-sourced data and data derived from it are isolated from those functions. They are not sent as prompts or other input to any AI or machine-learning system and are not used for training, fine-tuning, evaluation, embeddings, or model improvement.</p>
+
+    <h2>OAuth and security</h2>
+    <p>API traffic is protected in transit by HTTPS. OAuth access and refresh tokens, expiry, and granted scope are stored as one bundle in the logged-in operator's macOS Keychain. SQLite stores no OAuth token material; it stores a non-secret Keychain reference plus the minimized records and metadata described above. The application code exchanges authorization codes but does not persist them. Authorization state expires after ten minutes, and only a SHA-256 digest of that state is stored.</p>
+    <p>The minimized database is access-restricted to the operator and resides on the Mac's internal Apple-silicon APFS storage, which uses hardware-backed encryption at rest. The SQLite file is not separately application-encrypted. Any operator-controlled copy or backup containing this database is subject to the same security and deletion commitments.</p>
+
+    <h2>Disclosure and sharing</h2>
+    <p>The integration does not sell, rent, license, advertise with, or voluntarily disclose Oura-sourced or derived information to advertisers, data brokers, AI services, other users, or unrelated third parties. Information may be disclosed to Oura or its designated auditor when necessary to report or investigate an actual or suspected security or privacy incident or to verify the integration's compliance, and otherwise when required by law.</p>
+
+    <h2>Retention</h2>
+    <p>Raw endpoint responses exist only during synchronization and are then discarded. OAuth credentials remain until they are disconnected, replaced, or fully deleted. Minimized summaries, synchronization and audit records, and derived daily-status records currently have no automatic expiration and may remain after a temporary disconnect. They are kept only while needed for the ongoing personal integration and are manually deleted when a full-deletion request is completed, when the integration is permanently ended, or when Oura access is terminated.</p>
+
+    <h2>Consent, access, opt-out, and deletion</h2>
+    <p>The operator controls consent through Oura's authorization flow and may revoke that consent in Oura at any time. The integration respects the granted scope and Oura privacy settings. Revocation in Oura stops further authorized API access, although Scarlett may not detect it until the next synchronization attempt. A local disconnect stops Scarlett's local use of Oura-sourced and derived information. To opt out completely, disconnect locally and send the deletion request described below; processing will cease upon receipt. Corrections to source data should be made in Oura.</p>
+    <p>Disconnecting inside Scarlett deletes the locally stored OAuth access and refresh tokens and stops future API access. It does not delete previously imported summaries or derived records, and it does not currently revoke the authorization remotely at Oura. Revoking the integration in Oura stops future authorized access but does not erase copies already transferred to Scarlett.</p>
+    <p>For access to or full deletion of Oura-sourced and derived information, or to opt out, email <a href="mailto:scottwilks76@gmail.com">scottwilks76@gmail.com</a>. Upon a full-deletion request, the operator will stop Oura processing and manually delete all Oura-sourced and derived information in his possession or control—including tokens, imported summaries, Oura-derived daily-status records, integration metadata, and any controlled copies or backups—within 72 hours. Unrelated Second Brain records may remain.</p>
+
+    <h2>Changes</h2>
+    <p>This policy may be updated when the integration or its data practices change. The effective date above identifies the current version.</p>
+
+    <nav aria-label="Related pages">
+      <a href="oura.html">Application overview</a>
+      <a href="oura-terms.html">Terms of Service</a>
+    </nav>
+  </main>
+  <footer>
+    <p>Scarlett Health is an independent integration and is not affiliated with, sponsored by, or endorsed by Oura.</p>
+  </footer>
+</body>
+</html>
